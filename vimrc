@@ -64,10 +64,8 @@ Bundle 'EasyGrep'
 Bundle 'sjl/gundo.vim'
 
 Bundle 'FSwitch'
-Bundle 'Conque'
+"Bundle 'Conque'
 Bundle 'rhysd/vim-clang-format'
-map <silent> <plug>NoCrunchEvalLine <plug>CrunchEvalLine
-Bundle 'arecarn/crunch'
 
 Bundle 'farseer90718/Rainbow-Parentheses-Improved-and2'
 Bundle 'osyo-manga/vim-over'
@@ -507,7 +505,5 @@ nnoremap <left>  :vertical resize -5<CR>
 nnoremap <right> :vertical resize +5<CR>
 nnoremap <up>    :resize -5<CR>
 nnoremap <down>  :resize +5<CR>
-
-vnoremap <C-CR> :CrunchLine<CR>
 
 
