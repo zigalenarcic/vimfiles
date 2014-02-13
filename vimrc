@@ -39,10 +39,6 @@ Bundle 'vim-scripts/vcscommand.vim'
 Bundle 'JuliaLang/julia-vim'
 
 Bundle 'bling/vim-airline'
-
-"Bundle 'Yggdroot/indentLine'
-
-"Bundle 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
 
 Bundle 'Shougo/vimproc.vim'
@@ -58,8 +54,6 @@ Bundle 'kana/vim-operator-user'
 
 Bundle 'OmniCppComplete'
 
-"Bundle 'TTrCodeAssistor.vim'
-
 Bundle 'EasyGrep'
 Bundle 'sjl/gundo.vim'
 
@@ -68,12 +62,9 @@ Bundle 'FSwitch'
 Bundle 'rhysd/vim-clang-format'
 
 Bundle 'farseer90718/Rainbow-Parentheses-Improved-and2'
-Bundle 'osyo-manga/vim-over'
 Bundle 'ivanov/vim-ipython'
 Bundle 'davidhalter/jedi-vim'
-Bundle 'bilalq/lite-dfm'
-
-Bundle 'itchyny/thumbnail.vim'
+Bundle 'ap/vim-css-color'
 
 " put newbundles here ^
 
@@ -142,9 +133,8 @@ if has('gui')
 
   if has('win32')
     set guifont=Anonymous\ Pro:h13
-    "set guifont=Pt\ Mono:h11,Anonymous\ Pro:h11,Consolas:h11
   else
-    set guifont=Pt\ Mono:h16,Anonymous\ Pro:h16
+    set guifont=Anonymous\ Pro:h16 " macbook font
   endif
 end
 
@@ -179,11 +169,9 @@ map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 set wildignore=*.o,*.obj,*.bak,*.exe,tags
 
-" BINDI
 noremap <silent> <F2> :FSHere<CR>
 nmap <unique> <silent> <F3> <Plug>MarkSet
 noremap <silent> <F4> :TlistToggle<CR>
-"noremap <silent> <F3> :NERDTreeToggle<CR>
 noremap <silent> <F8> :GundoToggle<CR>
 noremap <F9> :!"C:/Program Files (x86)/Borland/CBuilder6/Bin/bpr2mak.exe"<CR>
 
@@ -204,6 +192,7 @@ nmap <silent> <D-k> <C-w>k
 nmap <silent> <D-h> <C-w>h
 nmap <silent> <D-l> <C-w>l
 inoremap jj <ESC>
+noremap <silent> <cr> :nohl<cr>
 
 "Set color scheme
 set t_Co=256
@@ -213,13 +202,12 @@ colorscheme myjellybeans
 hi Incsearch  guifg=black     guibg=green  gui=NONE
 hi Search     guifg=black     guibg=yellow      gui=NONE
 hi Folded   guifg=#777777   guibg=NONE   gui=NONE
-"set statusline=[%n]%1*%<%f%*%h%m%r%y%=%-14.(%l,%c%V%)\ %P
 
 
 """""""""""""""""""""""""""""""
 " Folding
 """""""""""""""""""""""""""""""
-"set nofoldenable " ko odpres ni foldov
+"set nofoldenable
 "set foldmethod=marker
 "set foldmarker={{{,}}}
 "Set space to toggle a fold
@@ -365,7 +353,6 @@ command G execute 'vimgrep /'.@/.'/g %<CR>:copen<CR>'
 noremap <Space> <PageDown>
 noremap <S-Space> <PageUp>
 
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:SuperTabDefaultCompletionType = "context"
 
 
@@ -386,28 +373,6 @@ set completeopt=menuone " we don't want no stinking preview window poping up, me
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+liaS --extra=+q *<CR>
 
 set langmenu=en_US.UTF-8
-
-noremap <silent> <cr> :nohl<cr>
-
-function! Lineanimation()
-  set cursorline
-  hi CursorLine guibg=#999999
-  sleep 10m
-  redraw
-  hi CursorLine guibg=#333333
-  sleep 10m
-  redraw
-  set nocursorline
-  sleep 10m
-  redraw
-endfunction
-
-"noremap <silent> * *N
-"noremap <silent> n n:call Lineanimation()<cr>
-"noremap <silent> N N:call Lineanimation()<cr>
-
-"let g:ycm_key_list_select_completion = ['<Enter>', '<TAB>']
-let g:ycm_key_list_select_completion = ['<TAB>']
 
 map <C-e> :silent !start explorer %:p:h:gs?\/?\\\\\\?<CR>
 
@@ -456,8 +421,6 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
-
-
 " Anzu plugin
 " mapping
 
@@ -469,12 +432,6 @@ nmap # <Plug>(anzu-sharp-with-echo)
 noremap <silent> <F5> :split<CR> :VimShellBufferDir<CR>
 noremap <silent> <F12> :e $MYVIMRC<CR>
 
-" clear status
-"nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
-
-" statusline
-"set statusline=%{anzu#search_status()}
-
 nnoremap <C-S-]> <Esc>:exe "ptjump! " . expand("<cword>")<Esc>
 nnoremap <silent> <C-j> :ptnext<CR>
 nnoremap <silent> <C-k> :ptprev<CR>
@@ -485,9 +442,6 @@ hi StatusLine guibg=#444444
 hi StatusLineNC guibg=#444444
 
 let g:airline_inactive_collapse = 0
-
-"set fillchars+=stl:=
-"set fillchars+=stlnc:-
 
 " indentation of C++
 
@@ -506,4 +460,6 @@ nnoremap <right> :vertical resize +5<CR>
 nnoremap <up>    :resize -5<CR>
 nnoremap <down>  :resize +5<CR>
 
+
+nnoremap <Esc> :echo Tlist_Get_Tag_Prototype_By_Line()<CR>
 
