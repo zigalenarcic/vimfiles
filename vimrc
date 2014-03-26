@@ -40,6 +40,7 @@ Bundle 'JuliaLang/julia-vim'
 
 Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
+Bundle 'ervandew/ag'
 
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
@@ -87,6 +88,7 @@ filetype plugin indent on     " required!
 """""""""""""""""""""""""""""""
 syntax on
 set encoding=utf-8
+set fileformats=unix,dos
 set backspace=indent,eol,start
 set history=100 " remember 100 items for search,command history
 set autoread
