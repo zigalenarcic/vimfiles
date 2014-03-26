@@ -160,9 +160,10 @@ set smartcase
 """""""""""""""""""""""""""""""
 " Binds
 """""""""""""""""""""""""""""""
+let mapleader = " " " space is the leader
+
 " F7 delete trailing whitespace
 noremap <F7> :%s/\s\+$//c<CR>
-"let mapleader = ","
 nmap <silent> <leader>l :set list!<CR>
 nmap <silent> <leader>s :set spell!<CR>
 map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
@@ -215,6 +216,14 @@ hi Folded   guifg=#777777   guibg=NONE   gui=NONE
 "nnoremap <F6> :set foldenable!<CR>
 
 if has('autocmd')
+  augroup quickfix
+    au FileType qf
+          \ if &buftype == "quickfix" |
+          \     setlocal nowrap |
+          \ endif
+  augroup END
+
+
   augroup filetypedetect
     au! BufRead,BufNewFile *.asd      set filetype=lisp
     au! BufRead,BufNewFile *.mac      set filetype=Maxima
@@ -313,7 +322,7 @@ augroup QFixToggle
 augroup END
 
 nnoremap <silent> <leader>g :execute 'vimgrep /'.@/.'/g **/*.c **/*.h **/*.cpp'<CR>:copen<CR>
-nnoremap Q :QFix<CR>
+nnoremap <silent> Q :QFix<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprevious<CR>
 
@@ -337,11 +346,6 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
-
-" grepping via vimgrep
-command G execute 'vimgrep /'.@/.'/g %<CR>:copen<CR>'
-
-
 " Space will toggle folds!
 "nnoremap <space> za
 
@@ -350,8 +354,6 @@ command G execute 'vimgrep /'.@/.'/g %<CR>:copen<CR>'
 "map N Nzz
 "map n nzz
 
-noremap <Space> <PageDown>
-noremap <S-Space> <PageUp>
 
 let g:SuperTabDefaultCompletionType = "context"
 
