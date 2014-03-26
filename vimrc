@@ -91,13 +91,16 @@ set backspace=indent,eol,start
 set history=100 " remember 100 items for search,command history
 set autoread
 set noswapfile
-set nobackup
 set spelllang=en_us
 set hidden
 set mouse=a
 set laststatus=2
 set cmdheight=2
 "set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+
+set backupdir=~/vimfiles/tmp
+set backup
+execute "set backupext=_" . strftime("%Y-%m-%d_%H-%M-%S") . ".vimbackup"
 
 set showcmd
 set noerrorbells
