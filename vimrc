@@ -19,6 +19,7 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 "Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/timl'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'msanders/snipmate.vim'
 "Bundle 'tomtom/tcomment_vim'
@@ -64,8 +65,15 @@ Bundle 'rhysd/vim-clang-format'
 
 Bundle 'farseer90718/Rainbow-Parentheses-Improved-and2'
 Bundle 'ivanov/vim-ipython'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'ap/vim-css-color'
+Bundle 'xuhdev/SingleCompile'
+
+Bundle 'Autocomplpop'
+
+" defines i, text object (function argument) and shifting args <, >,
+Bundle 'PeterRincker/vim-argumentative'
+Bundle 'MarcWeber/SmartTag'
 
 " put newbundles here ^
 
@@ -209,6 +217,8 @@ hi Incsearch  guifg=black     guibg=green  gui=NONE
 hi Search     guifg=black     guibg=yellow      gui=NONE
 hi Folded   guifg=#777777   guibg=NONE   gui=NONE
 
+nmap <F5> :SCCompileRun<cr>
+nmap <F6> :SCCompile<cr>
 
 """""""""""""""""""""""""""""""
 " Folding
@@ -273,6 +283,10 @@ endif
 let tlist_cpp_settings = 'c++;c:class;f:function'
 
 set tags =./tags; "search for tags from the current file loc (./) upwards
+
+nmap <silent> <C-]> :call SmartTag#SmartTag("goto")<CR>
+nmap <silent> <leader>tw :call SmartTag#SmartTag("split")<CR>
+nmap <silent> <leader>st :call SmartTag#ShowType()<CR>
 
 " Lisp mode
 let g:lisp_rainbow = 1
