@@ -125,6 +125,8 @@ set wildmode=list:longest
 set bufhidden=hide
 
 set shortmess=atT
+set shellslash " use forward slash on win32 when expanding filenames
+set isfname+=32 " add space as a filename character so filename completion works
 
 nnoremap ; :
 
@@ -427,11 +429,6 @@ autocmd FileType vimshell
       \| call vimshell#altercmd#define('i', 'iexe')
       \| call vimshell#altercmd#define('l', 'll')
       \| call vimshell#altercmd#define('ll', 'ls -l')
-"      \| call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
-
-function! g:my_chpwd(args, context)
-  call vimshell#execute('ls')
-endfunction
 
 autocmd FileType int-* call s:interactive_settings()
 function! s:interactive_settings()
