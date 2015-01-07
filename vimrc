@@ -22,7 +22,6 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/timl'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'msanders/snipmate.vim'
-"Bundle 'tomtom/tcomment_vim'
 Bundle 'godlygeek/tabular'
 " vim-scripts repos
 Bundle 'L9'
@@ -43,11 +42,6 @@ Bundle 'bling/vim-airline'
 Bundle 'ervandew/supertab'
 Bundle 'ervandew/ag'
 
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/vimshell.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler.vim'
-
 Bundle 'osyo-manga/vim-anzu'
 Bundle 'thinca/vim-quickrun'
 
@@ -58,14 +52,9 @@ Bundle 'OmniCppComplete'
 
 Bundle 'EasyGrep'
 Bundle 'sjl/gundo.vim'
-
 Bundle 'FSwitch'
-"Bundle 'Conque'
-Bundle 'rhysd/vim-clang-format'
 
 Bundle 'farseer90718/Rainbow-Parentheses-Improved-and2'
-Bundle 'ivanov/vim-ipython'
-"Bundle 'davidhalter/jedi-vim'
 Bundle 'ap/vim-css-color'
 Bundle 'xuhdev/SingleCompile'
 
@@ -399,41 +388,6 @@ set langmenu=en_US.UTF-8
 
 map <C-e> :silent !start explorer %:p:h:gs?\/?\\\\\\?<CR>
 
-" vimshell.vim config
-" Use current directory as vimshell prompt.
-let g:vimshell_prompt_expr =
-      \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
-let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
-
-"let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-let g:vimshell_enable_smart_case = 1
-
-if has('win32') || has('win64')
-  " Display user name on Windows.
-  let g:vimshell_prompt = $USERNAME."% "
-else
-  " Display user name on Linux.
-  let g:vimshell_prompt = $USER."% "
-endif
-
-" Initialize execute file list.
-let g:vimshell_execute_file_list = {}
-call vimshell#set_execute_file('txt,vim,c,cpp,h,cpp,d,xml,java', 'vim')
-let g:vimshell_execute_file_list['rb'] = 'ruby'
-let g:vimshell_execute_file_list['pl'] = 'perl'
-let g:vimshell_execute_file_list['py'] = 'python'
-call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
-
-autocmd FileType vimshell
-      \ call vimshell#altercmd#define('g', 'git')
-      \| call vimshell#altercmd#define('i', 'iexe')
-      \| call vimshell#altercmd#define('l', 'll')
-      \| call vimshell#altercmd#define('ll', 'ls -l')
-
-autocmd FileType int-* call s:interactive_settings()
-function! s:interactive_settings()
-endfunction
-
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_left_sep=''
@@ -477,7 +431,6 @@ nnoremap <left>  :vertical resize -5<CR>
 nnoremap <right> :vertical resize +5<CR>
 nnoremap <up>    :resize -5<CR>
 nnoremap <down>  :resize +5<CR>
-
 
 nnoremap <Esc> :echo Tlist_Get_Tag_Prototype_By_Line()<CR>
 
