@@ -136,7 +136,9 @@ if has('gui')
   "set fuoptions=maxvert,maxhorz
 
   if has('win32')
-    set guifont=Anonymous\ Pro:h13
+    set guifont=Anonymous\ Pro:h10
+    set rop=type:directx,renmode:1 " use directx and use aliased fonts
+
   else
     set guifont=Anonymous\ Pro:h16 " macbook font
   endif
