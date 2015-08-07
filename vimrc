@@ -439,3 +439,5 @@ nnoremap <down>  :resize +5<CR>
 
 nnoremap <Esc> :echo Tlist_Get_Tag_Prototype_By_Line()<CR>
 
+set noballooneval " this disables mouse hoover tooltips which can crash vim on win32 when using ctags
+let g:EchoFuncAutoStartBalloonDeclaration=0
