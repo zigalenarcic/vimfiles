@@ -252,6 +252,9 @@ if has('autocmd')
     au BufNewFile,BufRead *.md setl expandtab
 
     au BufRead,BufNewFile *.tex     map <silent> <F5> :silent VimProcBang pdflatex % <CR>
+
+    au BufRead,BufNewFile *.cpp     nnoremap <buffer> <F1> :silent exec "! start www.cplusplus.com/".expand("<cword>")<CR>
+    au BufRead,BufNewFile *.h     nnoremap <buffer> <F1> :silent exec "! start www.cplusplus.com/".expand("<cword>")<CR>
   augroup END
 endif
 
