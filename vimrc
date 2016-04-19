@@ -470,3 +470,6 @@ nnoremap <down>  :resize +5<CR>
 
 nnoremap <Esc> :echo Tlist_Get_Tag_Prototype_By_Line()<CR>
 
+let g:EchoFuncAutoStartBalloonDeclaration = 0
+"set noballooneval " don't eval balloonexpr on mouse-hover (it gets slow when there are lots of tags)
+
