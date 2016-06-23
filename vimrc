@@ -22,6 +22,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-vinegar'
 Bundle 'szw/vim-g'
+Bundle 'tpope/timl'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'msanders/snipmate.vim'
 "Bundle 'tomtom/tcomment_vim'
@@ -52,13 +53,17 @@ Bundle 'OmniCppComplete'
 
 Bundle 'EasyGrep'
 Bundle 'sjl/gundo.vim'
-
 Bundle 'FSwitch'
 
 Bundle 'farseer90718/Rainbow-Parentheses-Improved-and2'
-Bundle 'ivanov/vim-ipython'
-Bundle 'davidhalter/jedi-vim'
 Bundle 'ap/vim-css-color'
+Bundle 'xuhdev/SingleCompile'
+
+Bundle 'Autocomplpop'
+
+" defines i, text object (function argument) and shifting args <, >,
+Bundle 'PeterRincker/vim-argumentative'
+Bundle 'MarcWeber/SmartTag'
 
 Bundle 'junegunn/vim-peekaboo'
 Bundle 'nhooyr/neoman.vim'
@@ -116,6 +121,8 @@ set wildmode=list:longest
 set bufhidden=hide
 
 set shortmess=atT
+set shellslash " use forward slash on win32 when expanding filenames
+set isfname+=32 " add space as a filename character so filename completion works
 
 nnoremap ; :
 
@@ -136,7 +143,9 @@ if has('gui')
   "set fuoptions=maxvert,maxhorz
 
   if has('win32')
-    set guifont=Anonymous\ Pro:h13
+    set guifont=Anonymous\ Pro:h10
+    set rop=type:directx,renmode:1 " use directx and use aliased fonts
+
   else
     set guifont=Anonymous:h10 " macbook font
   endif
@@ -207,6 +216,8 @@ hi Incsearch  guifg=black     guibg=green  gui=NONE
 hi Search     guifg=black     guibg=yellow      gui=NONE
 hi Folded   guifg=#777777   guibg=NONE   gui=NONE
 
+nmap <F5> :SCCompileRun<cr>
+nmap <F6> :SCCompile<cr>
 
 """""""""""""""""""""""""""""""
 " Folding
@@ -247,6 +258,9 @@ if has('autocmd')
     au BufNewFile,BufRead *.md setl expandtab
 
     au BufRead,BufNewFile *.tex     map <silent> <F5> :silent VimProcBang pdflatex % <CR>
+
+    au BufRead,BufNewFile *.cpp     nnoremap <buffer> <F1> :silent exec "! start www.cplusplus.com/".expand("<cword>")<CR>
+    au BufRead,BufNewFile *.h     nnoremap <buffer> <F1> :silent exec "! start www.cplusplus.com/".expand("<cword>")<CR>
   augroup END
 endif
 
@@ -271,6 +285,10 @@ endif
 let tlist_cpp_settings = 'c++;c:class;f:function'
 
 set tags =./tags; "search for tags from the current file loc (./) upwards
+
+nmap <silent> <C-]> :call SmartTag#SmartTag("goto")<CR>
+nmap <silent> <leader>tw :call SmartTag#SmartTag("split")<CR>
+nmap <silent> <leader>st :call SmartTag#ShowType()<CR>
 
 " Lisp mode
 let g:lisp_rainbow = 1
@@ -381,10 +399,6 @@ set langmenu=en_US.UTF-8
 
 map <C-e> :silent !start explorer %:p:h:gs?\/?\\\\\\?<CR>
 
-autocmd FileType int-* call s:interactive_settings()
-function! s:interactive_settings()
-endfunction
-
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_left_sep=''
@@ -424,7 +438,6 @@ nnoremap <left>  :vertical resize -5<CR>
 nnoremap <right> :vertical resize +5<CR>
 nnoremap <up>    :resize -5<CR>
 nnoremap <down>  :resize +5<CR>
-
 
 nnoremap <Esc> :echo Tlist_Get_Tag_Prototype_By_Line()<CR>
 
