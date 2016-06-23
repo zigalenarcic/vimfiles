@@ -19,6 +19,9 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 "Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-vinegar'
+Bundle 'szw/vim-g'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'msanders/snipmate.vim'
 "Bundle 'tomtom/tcomment_vim'
@@ -29,23 +32,15 @@ Bundle 'FuzzyFinder'
 Bundle 'taglist.vim'
 Bundle 'repeat.vim'
 "Bundle 'matchit.zip'
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-shell'
-"Bundle 'xolox/vim-easytags'
 Bundle 'Mark'
 Bundle 'vim-scripts/svndiff.vim'
 Bundle 'vim-scripts/vcscommand.vim'
 "Bundle 'wesleyche/SrcExpl'
-Bundle 'JuliaLang/julia-vim'
 
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'ervandew/supertab'
 Bundle 'ervandew/ag'
-
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/vimshell.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler.vim'
 
 Bundle 'osyo-manga/vim-anzu'
 Bundle 'thinca/vim-quickrun'
@@ -59,13 +54,17 @@ Bundle 'EasyGrep'
 Bundle 'sjl/gundo.vim'
 
 Bundle 'FSwitch'
-"Bundle 'Conque'
-Bundle 'rhysd/vim-clang-format'
 
 Bundle 'farseer90718/Rainbow-Parentheses-Improved-and2'
 Bundle 'ivanov/vim-ipython'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'ap/vim-css-color'
+
+Bundle 'junegunn/vim-peekaboo'
+Bundle 'nhooyr/neoman.vim'
+
+" editing in Ag buffer via :EnMasse
+Bundle 'Olical/vim-enmasse'
 
 " put newbundles here ^
 
@@ -179,7 +178,6 @@ noremap <silent> <F2> :FSHere<CR>
 nmap <unique> <silent> <F3> <Plug>MarkSet
 noremap <silent> <F4> :TlistToggle<CR>
 noremap <silent> <F8> :GundoToggle<CR>
-noremap <F9> :!"C:/Program Files (x86)/Borland/CBuilder6/Bin/bpr2mak.exe"<CR>
 
 let NERDTreeIgnore = ['\~$', '\.o[0-9]*$' ]
 
@@ -383,42 +381,6 @@ set langmenu=en_US.UTF-8
 
 map <C-e> :silent !start explorer %:p:h:gs?\/?\\\\\\?<CR>
 
-" vimshell.vim config
-" Use current directory as vimshell prompt.
-let g:vimshell_prompt_expr =
-      \ 'escape(fnamemodify(getcwd(), ":~").">", "\\[]()?! ")." "'
-let g:vimshell_prompt_pattern = '^\%(\f\|\\.\)\+> '
-
-"let g:vimshell_right_prompt = 'vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
-let g:vimshell_enable_smart_case = 1
-
-if has('win32') || has('win64')
-  " Display user name on Windows.
-  let g:vimshell_prompt = $USERNAME."% "
-else
-  " Display user name on Linux.
-  let g:vimshell_prompt = $USER."% "
-endif
-
-" Initialize execute file list.
-let g:vimshell_execute_file_list = {}
-call vimshell#set_execute_file('txt,vim,c,cpp,h,cpp,d,xml,java', 'vim')
-let g:vimshell_execute_file_list['rb'] = 'ruby'
-let g:vimshell_execute_file_list['pl'] = 'perl'
-let g:vimshell_execute_file_list['py'] = 'python'
-call vimshell#set_execute_file('html,xhtml', 'gexe firefox')
-
-autocmd FileType vimshell
-      \ call vimshell#altercmd#define('g', 'git')
-      \| call vimshell#altercmd#define('i', 'iexe')
-      \| call vimshell#altercmd#define('l', 'll')
-      \| call vimshell#altercmd#define('ll', 'ls -l')
-"      \| call vimshell#hook#add('chpwd', 'my_chpwd', 'g:my_chpwd')
-
-function! g:my_chpwd(args, context)
-  call vimshell#execute('ls')
-endfunction
-
 autocmd FileType int-* call s:interactive_settings()
 function! s:interactive_settings()
 endfunction
@@ -436,7 +398,6 @@ nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 
-noremap <silent> <F5> :split<CR> :VimShellBufferDir<CR>
 noremap <silent> <F12> :e $MYVIMRC<CR>
 
 nnoremap <C-S-]> <Esc>:exe "ptjump! " . expand("<cword>")<Esc>
@@ -449,6 +410,7 @@ hi StatusLine guibg=#444444
 hi StatusLineNC guibg=#444444
 
 let g:airline_inactive_collapse = 0
+let g:airline#extensions#anzu#enabled = 0
 
 " indentation of C++
 
@@ -457,10 +419,6 @@ set cino+=t0 " dont indent return type of func if on separate line
 
 nnoremap <silent> j gj
 nnoremap <silent> k gk
-
-if has('win32')
-  let g:clang_format#command = 'C:/LLVM/bin/clang-format.exe'
-endif
 
 nnoremap <left>  :vertical resize -5<CR>
 nnoremap <right> :vertical resize +5<CR>
