@@ -138,7 +138,7 @@ if has('gui')
   if has('win32')
     set guifont=Anonymous\ Pro:h13
   else
-    set guifont=Anonymous\ Pro:h16 " macbook font
+    set guifont=Anonymous:h10 " macbook font
   endif
 end
 
