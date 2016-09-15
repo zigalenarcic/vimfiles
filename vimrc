@@ -259,8 +259,9 @@ if has('autocmd')
 
     au BufRead,BufNewFile *.tex     map <silent> <F5> :silent VimProcBang pdflatex % <CR>
 
-    au BufRead,BufNewFile *.cpp     nnoremap <buffer> <F1> :silent exec "! start www.cplusplus.com/".expand("<cword>")<CR>
-    au BufRead,BufNewFile *.h     nnoremap <buffer> <F1> :silent exec "! start www.cplusplus.com/".expand("<cword>")<CR>
+    au BufRead,BufNewFile *.cpp     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
+    au BufRead,BufNewFile *.c     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
+    au BufRead,BufNewFile *.h     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
   augroup END
 endif
 
