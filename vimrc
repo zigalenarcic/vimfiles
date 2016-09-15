@@ -445,4 +445,43 @@ nnoremap <Esc> :echo Tlist_Get_Tag_Prototype_By_Line()<CR>
 
 let g:EchoFuncAutoStartBalloonDeclaration = 0
 "set noballooneval " don't eval balloonexpr on mouse-hover (it gets slow when there are lots of tags)
+function! GetVisualSelection()
+  " Why is this not a built-in Vim script function?!
+  let [lnum1, col1] = getpos("'<")[1:2]
+  let [lnum2, col2] = getpos("'>")[1:2]
+  let lines = getline(lnum1, lnum2)
+  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+  let lines[0] = lines[0][col1 - 1:]
+  return join(lines, "\n")
+endfunction
+
+function! ToHex()
+  let s = ""
+  if mode() == "v"
+    let s = GetVisualSelection()
+  else
+    let s = expand("<cword>")
+  endif
+
+  let n = str2nr(s, 10)
+  let replacement = printf("0x%x", n)
+  if mode() == "v"
+    execute "normal gvc" . replacement
+  else
+    execute "normal ciw" . replacement
+  endif
+endfunction
+
+function! PythonEvalSelection()
+  let s = GetVisualSelection()
+python << EOF
+import vim
+sel = vim.eval("s")
+retval = eval(sel)
+vim.command("let replacement = \"" + str(retval) + "\"")
+EOF
+  execute "normal gvc" . replacement
+endfunction
+
+noremap <F6> :call PythonEvalSelection()<CR>
 
