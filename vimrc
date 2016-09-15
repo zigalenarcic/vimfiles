@@ -184,7 +184,7 @@ map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 set wildignore=*.o,*.obj,*.bak,*.exe,tags
 
 noremap <silent> <F2> :FSHere<CR>
-nmap <unique> <silent> <F3> <Plug>MarkSet
+noremap <silent> <F3> <Plug>MarkSet
 noremap <silent> <F4> :TlistToggle<CR>
 noremap <silent> <F8> :GundoToggle<CR>
 
@@ -319,14 +319,15 @@ let g:yankring_history_dir = '$HOME/vimfiles/tmp/'
 let g:yankring_min_element_length = 2
 
 
-au bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
+au! bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
 
 " persistent undo
 set undodir =~/vimfiles/tmp/
 set undofile
 
 " toggles the quickfix window.
-command -bang -nargs=? QFix call QFixToggle(<bang>0)
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+
 function! QFixToggle(forced)
   if exists("g:qfix_win") && a:forced == 0
     cclose
