@@ -184,7 +184,7 @@ map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 set wildignore=*.o,*.obj,*.bak,*.exe,tags
 
 noremap <silent> <F2> :FSHere<CR>
-noremap <silent> <F3> <Plug>MarkSet
+nmap <silent> <F3> <Plug>MarkSet
 noremap <silent> <F4> :TlistToggle<CR>
 noremap <silent> <F8> :GundoToggle<CR>
 
