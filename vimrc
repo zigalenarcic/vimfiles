@@ -119,6 +119,7 @@ set scrolloff=2
 set wildmenu
 set wildmode=list:longest
 set bufhidden=hide
+set noequalalways " don't resize split windows when closing a window
 
 set shortmess=atT
 set shellslash " use forward slash on win32 when expanding filenames
