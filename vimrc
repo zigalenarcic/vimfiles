@@ -486,3 +486,10 @@ endfunction
 
 noremap <F6> :call PythonEvalSelection()<CR>
 
+highlight Jumps guifg=#80e050
+augroup additional_c_syntax
+  autocmd!
+  autocmd Syntax c syntax keyword Jumps return goto continue
+  autocmd Syntax cpp syntax keyword Jumps return goto continue
+augroup end
+
