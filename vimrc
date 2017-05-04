@@ -110,7 +110,6 @@ set vb t_vb=
 set listchars=trail:·,tab:▸\ ,eol:¬
 set showbreak=|
 set ruler
-set number "numbered lines
 set scrolloff=2
 set wildmenu
 set wildmode=list:longest
