@@ -17,12 +17,7 @@ Bundle 'gmarik/vundle'
 "
 " original repos on github
 Bundle 'scrooloose/nerdtree'
-"Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-vinegar'
-Bundle 'szw/vim-g'
-Bundle 'tpope/timl'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'msanders/snipmate.vim'
 "Bundle 'tomtom/tcomment_vim'
@@ -70,6 +65,7 @@ Bundle 'nhooyr/neoman.vim'
 
 " editing in Ag buffer via :EnMasse
 Bundle 'Olical/vim-enmasse'
+Bundle 'mhinz/vim-grepper'
 
 " put newbundles here ^
 
