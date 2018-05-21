@@ -25,7 +25,6 @@ Bundle 'godlygeek/tabular'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'taglist.vim'
 Bundle 'repeat.vim'
 "Bundle 'matchit.zip'
 Bundle 'Mark'
@@ -181,7 +180,6 @@ set wildignore=*.o,*.obj,*.bak,*.exe,tags
 
 noremap <silent> <F2> :FSHere<CR>
 nmap <silent> <F3> <Plug>MarkSet
-noremap <silent> <F4> :TlistToggle<CR>
 noremap <silent> <F8> :GundoToggle<CR>
 
 let NERDTreeIgnore = ['\~$', '\.o[0-9]*$' ]
@@ -265,22 +263,6 @@ endif
 """""""""""""""""""""""""""""""
 " Plugin configuration
 """""""""""""""""""""""""""""""
-
-" Taglist
-let Tlist_Inc_Winwidth       = 0
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Auto_Highlight_Tag = 0
-let Tlist_Show_One_File      = 1
-let Tlist_Show_Menu          = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Auto_Highlight_Tag = 0
-if has('win32')
-  let Tlist_Ctags_Cmd          = 'C:/bin/ctags.exe'
-else
-  let Tlist_Ctags_Cmd          = '~/usr/bin/ctags'
-endif
-let tlist_cpp_settings = 'c++;c:class;f:function'
-
 set tags =./tags; "search for tags from the current file loc (./) upwards
 
 nmap <silent> <C-]> :call SmartTag#SmartTag("goto")<CR>
@@ -436,8 +418,6 @@ nnoremap <left>  :vertical resize -5<CR>
 nnoremap <right> :vertical resize +5<CR>
 nnoremap <up>    :resize -5<CR>
 nnoremap <down>  :resize +5<CR>
-
-nnoremap <Esc> :echo Tlist_Get_Tag_Prototype_By_Line()<CR>
 
 let g:EchoFuncAutoStartBalloonDeclaration = 0
 "set noballooneval " don't eval balloonexpr on mouse-hover (it gets slow when there are lots of tags)
