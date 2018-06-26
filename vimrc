@@ -31,6 +31,7 @@ Bundle 'Mark'
 Bundle 'vim-scripts/svndiff.vim'
 Bundle 'vim-scripts/vcscommand.vim'
 "Bundle 'wesleyche/SrcExpl'
+Bundle 'nanotech/jellybeans.vim' 
 
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
@@ -121,12 +122,19 @@ set isfname+=32 " add space as a filename character so filename completion works
 
 nnoremap ; :
 
+if !exists("g:os")
+  if has("win64") || has("win32")
+    let g:os = "Windows"
+  else
+    let g:os = substitute(system("uname"), "\n", "", "")
+  endif
+endif
 
 """""""""""""""""""""""""""""""
 " GUI mode
 """""""""""""""""""""""""""""""
 
-if has('gui')
+if has("gui_running")
   set lines=40
   set columns=100
   "No icky toolbar, menu or scrollbars in the GUI
@@ -137,12 +145,13 @@ if has('gui')
   "full screen expands
   "set fuoptions=maxvert,maxhorz
 
-  if has('win32')
+  if g:os == "Windows"
     set guifont=Anonymous\ Pro:h10
     set rop=type:directx,renmode:1 " use directx and use aliased fonts
-
-  else
+  elseif g:os == "Darwin"
     set guifont=Anonymous:h10 " macbook font
+  else
+    set guifont=Anonymous\ Pro\ 10
   endif
 end
 
@@ -204,11 +213,15 @@ noremap <silent> <cr> :nohl<cr>
 "Set color scheme
 set t_Co=256
 set background=dark
+if has("gui_running")
 colorscheme myjellybeans
 "Corrections of the colorsheme
 hi Incsearch  guifg=black     guibg=green  gui=NONE
 hi Search     guifg=black     guibg=yellow      gui=NONE
 hi Folded   guifg=#777777   guibg=NONE   gui=NONE
+else
+colorscheme jellybeans
+endif
 
 nmap <F5> :SCCompileRun<cr>
 nmap <F6> :SCCompile<cr>
@@ -399,9 +412,11 @@ nnoremap <silent> <C-j> :ptnext<CR>
 nnoremap <silent> <C-k> :ptprev<CR>
 
 let g:airline_theme = 'bubblegum'
+if has("gui_running")
 hi VertSplit guibg=#444444  guifg=#444444
 hi StatusLine guibg=#444444
 hi StatusLineNC guibg=#444444
+endif
 
 let g:airline_inactive_collapse = 0
 let g:airline#extensions#anzu#enabled = 0
