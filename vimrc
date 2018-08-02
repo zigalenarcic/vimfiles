@@ -31,7 +31,7 @@ Bundle 'Mark'
 Bundle 'vim-scripts/svndiff.vim'
 Bundle 'vim-scripts/vcscommand.vim'
 "Bundle 'wesleyche/SrcExpl'
-Bundle 'nanotech/jellybeans.vim' 
+Bundle 'nanotech/jellybeans.vim'
 
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
@@ -72,7 +72,7 @@ Bundle 'mhinz/vim-grepper'
 " non github repos
 " Bundle 'git://git.wincent.com/command-t.git'
 
-filetype plugin indent on     " required! 
+filetype plugin indent on     " required!
 "
 " Brief help
 " :BundleList          - list configured bundles
