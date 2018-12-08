@@ -150,6 +150,8 @@ if has("gui_running")
     set rop=type:directx,renmode:1 " use directx and use aliased fonts
   elseif g:os == "Darwin"
     set guifont=Anonymous:h10 " macbook font
+  elseif g:os == "OpenBSD"
+    set guifont=DejaVu\ Sans\ Mono\ 10
   else
     set guifont=Anonymous\ Pro\ 10
   endif
