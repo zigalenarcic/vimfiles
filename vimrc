@@ -209,7 +209,6 @@ nmap <silent> <D-j> <C-w>j
 nmap <silent> <D-k> <C-w>k
 nmap <silent> <D-h> <C-w>h
 nmap <silent> <D-l> <C-w>l
-inoremap jj <ESC>
 noremap <silent> <cr> :nohl<cr>
 
 "Set color scheme
