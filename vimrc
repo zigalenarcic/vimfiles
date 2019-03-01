@@ -221,8 +221,6 @@ if has('autocmd')
     au BufRead,BufNewFile *.cpp     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
     au BufRead,BufNewFile *.c     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
     au BufRead,BufNewFile *.h     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
-
-    au! BufRead,BufNewFile *.one set filetype=one
   augroup END
 endif
 
@@ -251,10 +249,6 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
-
-let g:yankring_history_dir = '$HOME/vimfiles/tmp/'
-let g:yankring_min_element_length = 2
-
 
 au! bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
 
@@ -305,8 +299,8 @@ if !exists(":DiffOrig")
           \ | wincmd p | diffthis
 endif
 
-" Space will toggle folds!
-"nnoremap <space> za
+" Space will toggle folds
+nnoremap <silent> <leader><space> za
 
 let g:SuperTabDefaultCompletionType = "context"
 
@@ -351,9 +345,6 @@ set cino+=t0 " dont indent return type of func if on separate line
 
 nnoremap <silent> j gj
 nnoremap <silent> k gk
-
-let g:EchoFuncAutoStartBalloonDeclaration = 0
-"set noballooneval " don't eval balloonexpr on mouse-hover (it gets slow when there are lots of tags)
 
 " Green highlighting jumps or function returns in C and C++
 highlight Jumps guifg=#80e050
