@@ -1,5 +1,5 @@
 " Ziga Lenarcic's .vimrc vim configuration
-"
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -16,56 +16,29 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-surround'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'msanders/snipmate.vim'
-"Bundle 'tomtom/tcomment_vim'
 Bundle 'godlygeek/tabular'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'repeat.vim'
-"Bundle 'matchit.zip'
-Bundle 'Mark'
-Bundle 'vim-scripts/svndiff.vim'
-Bundle 'vim-scripts/vcscommand.vim'
-"Bundle 'wesleyche/SrcExpl'
 Bundle 'nanotech/jellybeans.vim'
-
 Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'ervandew/supertab'
 Bundle 'ervandew/ag'
-
 Bundle 'osyo-manga/vim-anzu'
-Bundle 'thinca/vim-quickrun'
-
-Bundle 'kana/vim-submode'
-Bundle 'kana/vim-operator-user'
-
-Bundle 'OmniCppComplete'
-
-Bundle 'EasyGrep'
 Bundle 'sjl/gundo.vim'
-Bundle 'FSwitch'
-
 Bundle 'farseer90718/Rainbow-Parentheses-Improved-and2'
-Bundle 'ap/vim-css-color'
-Bundle 'xuhdev/SingleCompile'
-
-Bundle 'Autocomplpop'
-
 " defines i, text object (function argument) and shifting args <, >,
 Bundle 'PeterRincker/vim-argumentative'
 Bundle 'MarcWeber/SmartTag'
-
-Bundle 'junegunn/vim-peekaboo'
-Bundle 'nhooyr/neoman.vim'
-
 " editing in Ag buffer via :EnMasse
 Bundle 'Olical/vim-enmasse'
-Bundle 'mhinz/vim-grepper'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'repeat.vim'
+Bundle 'Mark'
+Bundle 'OmniCppComplete'
+Bundle 'EasyGrep'
+Bundle 'FSwitch'
+Bundle 'Autocomplpop'
 
 " put newbundles here ^
 
@@ -166,7 +139,6 @@ set shiftwidth=2
 set autoindent
 set smartindent
 
-
 """""""""""""""""""""""""""""""
 " Searching
 """""""""""""""""""""""""""""""
@@ -174,7 +146,6 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-
 
 """""""""""""""""""""""""""""""
 " Binds
@@ -185,15 +156,12 @@ let mapleader = " " " space is the leader
 noremap <F7> :%s/\s\+$//c<CR>
 nmap <silent> <leader>l :set list!<CR>
 nmap <silent> <leader>s :set spell!<CR>
-map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 set wildignore=*.o,*.obj,*.bak,*.exe,tags
 
 noremap <silent> <F2> :FSHere<CR>
 nmap <silent> <F3> <Plug>MarkSet
 noremap <silent> <F8> :GundoToggle<CR>
-
-let NERDTreeIgnore = ['\~$', '\.o[0-9]*$' ]
 
 " FuzzyFinder binds
 let g:fuf_modesDisable = []
@@ -205,10 +173,6 @@ nnoremap <silent> <C-t> :FufTag<CR>
 nnoremap <silent> <C-l> :FufLine<CR>
 nnoremap <silent> <C-h> :FufHelp<CR>
 
-nmap <silent> <D-j> <C-w>j
-nmap <silent> <D-k> <C-w>k
-nmap <silent> <D-h> <C-w>h
-nmap <silent> <D-l> <C-w>l
 noremap <silent> <cr> :nohl<cr>
 
 "Set color scheme
@@ -223,19 +187,6 @@ hi Folded   guifg=#777777   guibg=NONE   gui=NONE
 else
 colorscheme jellybeans
 endif
-
-nmap <F5> :SCCompileRun<cr>
-nmap <F6> :SCCompile<cr>
-
-"""""""""""""""""""""""""""""""
-" Folding
-"""""""""""""""""""""""""""""""
-"set nofoldenable
-"set foldmethod=marker
-"set foldmarker={{{,}}}
-"Set space to toggle a fold
-"nnoremap <space> zA
-"nnoremap <F6> :set foldenable!<CR>
 
 if has('autocmd')
   augroup quickfix
@@ -301,15 +252,6 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
-
-"au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.slf,*.slv,*.glsl setf glsl
-
-"au FileType xhtml,xml so ~/.vim/bundle/autoclosetag/html_autoclosetag.vim
-
-
-"let g:ConqueTerm_Color = 0
-"nnoremap <silent> <leader>c :ConqueTermSplit bash --login<CR>
-
 let g:yankring_history_dir = '$HOME/vimfiles/tmp/'
 let g:yankring_min_element_length = 2
 
@@ -366,36 +308,14 @@ endif
 " Space will toggle folds!
 "nnoremap <space> za
 
-" Search mappings: These will make it so that going to the next one in a
-" search will center on the line it's found in.
-"map N Nzz
-"map n nzz
-
-
 let g:SuperTabDefaultCompletionType = "context"
 
-
-" Easy tags
-"let g:easytags_cmd = 'C:/bin/ctags.exe'
-"let g:easytags_on_cursorhold = 0
-"let g:easytags_events = ['BufWritePost']
-"let g:easytags_dynamic_files = 1
-"highlight link cMember Special
-
-" cTypeTag cEnumTag cPreProcTag cFunctionTag cMemberTag
-
-"let g:clang_exec='C:/clang/bin/clang.exe'
-"let g:clang_complete_auto=0
-
-set completeopt=menuone " we don't want no stinking preview window poping up, messing the UX
+set completeopt=menuone
 
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+liaS --extra=+q *<CR>
 
 set langmenu=en_US.UTF-8
 
-map <C-e> :silent !start explorer %:p:h:gs?\/?\\\\\\?<CR>
-
-"let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
@@ -432,53 +352,10 @@ set cino+=t0 " dont indent return type of func if on separate line
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
-nnoremap <left>  :vertical resize -5<CR>
-nnoremap <right> :vertical resize +5<CR>
-nnoremap <up>    :resize -5<CR>
-nnoremap <down>  :resize +5<CR>
-
 let g:EchoFuncAutoStartBalloonDeclaration = 0
 "set noballooneval " don't eval balloonexpr on mouse-hover (it gets slow when there are lots of tags)
-function! GetVisualSelection()
-  " Why is this not a built-in Vim script function?!
-  let [lnum1, col1] = getpos("'<")[1:2]
-  let [lnum2, col2] = getpos("'>")[1:2]
-  let lines = getline(lnum1, lnum2)
-  let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
-  let lines[0] = lines[0][col1 - 1:]
-  return join(lines, "\n")
-endfunction
 
-function! ToHex()
-  let s = ""
-  if mode() == "v"
-    let s = GetVisualSelection()
-  else
-    let s = expand("<cword>")
-  endif
-
-  let n = str2nr(s, 10)
-  let replacement = printf("0x%x", n)
-  if mode() == "v"
-    execute "normal gvc" . replacement
-  else
-    execute "normal ciw" . replacement
-  endif
-endfunction
-
-function! PythonEvalSelection()
-  let s = GetVisualSelection()
-python << EOF
-import vim
-sel = vim.eval("s")
-retval = eval(sel)
-vim.command("let replacement = \"" + str(retval) + "\"")
-EOF
-  execute "normal gvc" . replacement
-endfunction
-
-noremap <F6> :call PythonEvalSelection()<CR>
-
+" Green highlighting jumps or function returns in C and C++
 highlight Jumps guifg=#80e050
 augroup additional_c_syntax
   autocmd!
