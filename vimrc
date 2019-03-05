@@ -256,6 +256,8 @@ au! bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !c
 set undodir =~/vimfiles/tmp/
 set undofile
 
+let g:fuf_dataDir = "~/vimfiles/tmp/fuf"
+
 " toggles the quickfix window.
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
 
