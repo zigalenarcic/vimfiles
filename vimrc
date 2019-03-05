@@ -148,6 +148,16 @@ set ignorecase
 set smartcase
 
 """""""""""""""""""""""""""""""
+" File locations
+"""""""""""""""""""""""""""""""
+set tags =./tags; "search for tags from the current file loc (./) upwards
+" persistent undo
+set undodir=~/vimfiles/tmp/
+set undofile
+" save viminfo file into tmp
+set viminfofile=~/vimfiles/tmp/viminfo
+
+"""""""""""""""""""""""""""""""
 " Binds
 """""""""""""""""""""""""""""""
 let mapleader = " " " space is the leader
@@ -166,6 +176,7 @@ noremap <silent> <F8> :GundoToggle<CR>
 " FuzzyFinder binds
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 300
+let g:fuf_dataDir = "~/vimfiles/tmp/fuf"
 nnoremap <silent> <C-b> :FufBuffer<CR>
 nnoremap <silent> <C-f> :FufFileWithCurrentBufferDir<CR>
 nnoremap <silent> <C-a> :FufMruFile<CR>
@@ -224,11 +235,9 @@ if has('autocmd')
   augroup END
 endif
 
-
 """""""""""""""""""""""""""""""
 " Plugin configuration
 """""""""""""""""""""""""""""""
-set tags =./tags; "search for tags from the current file loc (./) upwards
 
 nmap <silent> <C-]> :call SmartTag#SmartTag("goto")<CR>
 nmap <silent> <leader>tw :call SmartTag#SmartTag("split")<CR>
@@ -251,12 +260,6 @@ vnoremap <silent> # :<C-U>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 au! bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
-
-" persistent undo
-set undodir =~/vimfiles/tmp/
-set undofile
-
-let g:fuf_dataDir = "~/vimfiles/tmp/fuf"
 
 " toggles the quickfix window.
 command! -bang -nargs=? QFix call QFixToggle(<bang>0)
