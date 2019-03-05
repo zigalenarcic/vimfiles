@@ -190,13 +190,13 @@ noremap <silent> <cr> :nohl<cr>
 set t_Co=256
 set background=dark
 if has("gui_running")
-colorscheme myjellybeans
-"Corrections of the colorsheme
-hi Incsearch  guifg=black     guibg=green  gui=NONE
-hi Search     guifg=black     guibg=yellow      gui=NONE
-hi Folded   guifg=#777777   guibg=NONE   gui=NONE
+  colorscheme myjellybeans
+  "Corrections of the colorsheme
+  hi Incsearch  guifg=black     guibg=green  gui=NONE
+  hi Search     guifg=black     guibg=yellow      gui=NONE
+  hi Folded   guifg=#777777   guibg=NONE   gui=NONE
 else
-colorscheme jellybeans
+  colorscheme jellybeans
 endif
 
 if has('autocmd')
@@ -249,15 +249,15 @@ let g:lisp_rainbow = 1
 " VISUAL SEARHC "
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy/<C-R><C-R>=substitute(
+      \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+      \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+      \gvy?<C-R><C-R>=substitute(
+      \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+      \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 au! bufwritepost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod a+x <afile> | endif | endif
 
@@ -274,9 +274,9 @@ endfunction
 
 " used to track the quickfix window
 augroup QFixToggle
- autocmd!
- autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
- autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
+  autocmd!
+  autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+  autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
 augroup END
 
 nnoremap <silent> <leader>g :execute 'vimgrep /'.@/.'/g **/*.c **/*.h **/*.cpp'<CR>:copen<CR>
@@ -286,12 +286,12 @@ nnoremap [q :cprevious<CR>
 
 " Common code for encodings
 function! SetFileEncodings(encodings)
-let b:myfileencodingsbak=&fileencodings
-let &fileencodings=a:encodings
+  let b:myfileencodingsbak=&fileencodings
+  let &fileencodings=a:encodings
 endfunction
 function! RestoreFileEncodings()
-let &fileencodings=b:myfileencodingsbak
-unlet b:myfileencodingsbak
+  let &fileencodings=b:myfileencodingsbak
+  unlet b:myfileencodingsbak
 endfunction
 
 " .NFO specific
@@ -300,11 +300,11 @@ au BufReadPost *.nfo call RestoreFileEncodings()
 
 " diff against last
 if !exists(":DiffOrig")
-    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-          \ | wincmd p | diffthis
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+        \ | wincmd p | diffthis
 endif
 
-" Space will toggle folds
+" Space space will toggle folds
 nnoremap <silent> <leader><space> za
 
 let g:SuperTabDefaultCompletionType = "context"
@@ -335,9 +335,9 @@ nnoremap <silent> <C-k> :ptprev<CR>
 
 let g:airline_theme = 'bubblegum'
 if has("gui_running")
-hi VertSplit guibg=#444444  guifg=#444444
-hi StatusLine guibg=#444444
-hi StatusLineNC guibg=#444444
+  hi VertSplit guibg=#444444  guifg=#444444
+  hi StatusLine guibg=#444444
+  hi StatusLineNC guibg=#444444
 endif
 
 let g:airline_inactive_collapse = 0
