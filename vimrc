@@ -5,9 +5,9 @@ filetype off                   " required!
 
 set langmenu=en_US.UTF-8
 
-set rtp+=~/vimfiles/bundle/vundle/
-set rtp+=~/vimfiles/
-call vundle#rc('~/vimfiles/bundle')
+set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/
+call vundle#rc('~/.vim/bundle')
 
 " let Vundle manage Vundle
 " required!
@@ -73,7 +73,7 @@ set laststatus=2
 set cmdheight=2
 "set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
-set backupdir=~/vimfiles/tmp
+set backupdir=~/.vim/tmp
 set backup
 execute "set backupext=_" . strftime("%Y-%m-%d_%H-%M-%S") . ".vimbackup"
 
@@ -152,10 +152,10 @@ set smartcase
 """""""""""""""""""""""""""""""
 set tags =./tags; "search for tags from the current file loc (./) upwards
 " persistent undo
-set undodir=~/vimfiles/tmp/
+set undodir=~/.vim/tmp/
 set undofile
 " save viminfo file into tmp
-set viminfofile=~/vimfiles/tmp/viminfo
+set viminfofile=~/.vim/tmp/viminfo
 
 """""""""""""""""""""""""""""""
 " Binds
@@ -176,7 +176,7 @@ noremap <silent> <F8> :GundoToggle<CR>
 " FuzzyFinder binds
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 300
-let g:fuf_dataDir = "~/vimfiles/tmp/fuf"
+let g:fuf_dataDir = "~/.vim/tmp/fuf"
 nnoremap <silent> <C-b> :FufBuffer<CR>
 nnoremap <silent> <C-f> :FufFileWithCurrentBufferDir<CR>
 nnoremap <silent> <C-a> :FufMruFile<CR>
