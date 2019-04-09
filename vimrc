@@ -5,9 +5,31 @@ filetype off                   " required!
 
 set langmenu=en_US.UTF-8
 
-set rtp+=~/.vim/bundle/vundle/
-set rtp+=~/.vim/
-call vundle#rc('~/.vim/bundle')
+if !exists("g:os")
+  if has("win64") || has("win32")
+    let g:os = "Windows"
+  else
+    let g:os = substitute(system("uname"), "\n", "", "")
+  endif
+endif
+
+if g:os == "Windows"
+  set rtp+=~/vimfiles/bundle/vundle/
+  set rtp+=~/vimfiles/
+  call vundle#rc('~/vimfiles/bundle')
+  set backupdir=~/vimfiles/tmp
+  set undodir=~/vimfiles/tmp/
+  " save viminfo file into tmp
+  set viminfofile=~/vimfiles/tmp/viminfo
+else
+  set rtp+=~/.vim/bundle/vundle/
+  set rtp+=~/.vim/
+  call vundle#rc('~/.vim/bundle')
+  set backupdir=~/.vim/tmp
+  set undodir=~/.vim/tmp/
+  " save viminfo file into tmp
+  set viminfofile=~/.vim/tmp/viminfo
+endif
 
 " let Vundle manage Vundle
 " required!
@@ -73,7 +95,6 @@ set laststatus=2
 set cmdheight=2
 "set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
-set backupdir=~/.vim/tmp
 set backup
 execute "set backupext=_" . strftime("%Y-%m-%d_%H-%M-%S") . ".vimbackup"
 
@@ -94,14 +115,6 @@ set shellslash " use forward slash on win32 when expanding filenames
 set isfname+=32 " add space as a filename character so filename completion works
 
 nnoremap ; :
-
-if !exists("g:os")
-  if has("win64") || has("win32")
-    let g:os = "Windows"
-  else
-    let g:os = substitute(system("uname"), "\n", "", "")
-  endif
-endif
 
 """""""""""""""""""""""""""""""
 " GUI mode
@@ -152,10 +165,7 @@ set smartcase
 """""""""""""""""""""""""""""""
 set tags =./tags; "search for tags from the current file loc (./) upwards
 " persistent undo
-set undodir=~/.vim/tmp/
 set undofile
-" save viminfo file into tmp
-set viminfofile=~/.vim/tmp/viminfo
 
 """""""""""""""""""""""""""""""
 " Binds
@@ -176,7 +186,11 @@ noremap <silent> <F8> :GundoToggle<CR>
 " FuzzyFinder binds
 let g:fuf_modesDisable = []
 let g:fuf_mrufile_maxItem = 300
-let g:fuf_dataDir = "~/.vim/tmp/fuf"
+if g:os == "Windows"
+  let g:fuf_dataDir = "~/vimfiles/tmp/fuf"
+else
+  let g:fuf_dataDir = "~/.vim/tmp/fuf"
+endif
 nnoremap <silent> <C-b> :FufBuffer<CR>
 nnoremap <silent> <C-f> :FufFileWithCurrentBufferDir<CR>
 nnoremap <silent> <C-a> :FufMruFile<CR>
