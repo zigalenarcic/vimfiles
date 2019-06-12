@@ -299,8 +299,8 @@ augroup END
 
 nnoremap <silent> <leader>g :execute 'vimgrep /'.@/.'/g **/*.c **/*.h **/*.cpp'<CR>:copen<CR>
 nnoremap <silent> Q :QFix<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprevious<CR>
+nnoremap ]c :cnext<CR>
+nnoremap [c :cprevious<CR>
 
 " Common code for encodings
 function! SetFileEncodings(encodings)
