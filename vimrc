@@ -170,8 +170,6 @@ set undofile
 """""""""""""""""""""""""""""""
 " Binds
 """""""""""""""""""""""""""""""
-let mapleader = " " " space is the leader
-
 " F7 delete trailing whitespace
 noremap <F7> :%s/\s\+$//c<CR>
 nmap <silent> <leader>l :set list!<CR>
