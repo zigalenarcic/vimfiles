@@ -107,14 +107,15 @@ set ruler
 set scrolloff=2
 set wildmenu
 set wildmode=list:longest
+set wildignore=*.o,*.obj,*.bak,*.exe,tags
 set bufhidden=hide
 set noequalalways " don't resize split windows when closing a window
+set langmenu=en_US.UTF-8
+set completeopt=menuone
 
 set shortmess=atT
 set shellslash " use forward slash on win32 when expanding filenames
 set isfname+=32 " add space as a filename character so filename completion works
-
-nnoremap ; :
 
 """""""""""""""""""""""""""""""
 " GUI mode
@@ -170,16 +171,33 @@ set undofile
 """""""""""""""""""""""""""""""
 " Binds
 """""""""""""""""""""""""""""""
+nnoremap ; :
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> <CR> :nohl<CR>
+
+nnoremap <silent> <leader>l :set list!<CR>
+nnoremap <silent> <leader>s :set spell!<CR>
+nnoremap <silent> <leader>cd :cd %:h<CR>
+nnoremap <silent> <F2> :FSHere<CR>
+nnoremap <silent> <F3> <Plug>MarkSet
 " F7 delete trailing whitespace
-noremap <F7> :%s/\s\+$//c<CR>
-nmap <silent> <leader>l :set list!<CR>
-nmap <silent> <leader>s :set spell!<CR>
+nnoremap <F7> :%s/\s\+$//c<CR>
+nnoremap <silent> <F8> :GundoToggle<CR>
+nnoremap <C-F12> :!ctags -R --c++-kinds=+p --fields=+liaS --extra=+q *<CR>
+nnoremap <silent> <F12> :e $MYVIMRC<CR>
 
-set wildignore=*.o,*.obj,*.bak,*.exe,tags
+nnoremap <silent> <leader>g :execute 'vimgrep /'.@/.'/g **/*.c **/*.h **/*.cpp'<CR>:copen<CR>
+nnoremap <silent> Q :QFix<CR>
+nnoremap ]c :cnext<CR>
+nnoremap [c :cprevious<CR>
 
-noremap <silent> <F2> :FSHere<CR>
-nmap <silent> <F3> <Plug>MarkSet
-noremap <silent> <F8> :GundoToggle<CR>
+" Space will toggle folds
+"nnoremap <silent> <space> za
+
+nnoremap <C-S-]> <Esc>:exe "ptjump! " . expand("<cword>")<Esc>
+nnoremap <silent> <C-j> :ptnext<CR>
+nnoremap <silent> <C-k> :ptprev<CR>
 
 " FuzzyFinder binds
 let g:fuf_modesDisable = []
@@ -196,7 +214,15 @@ nnoremap <silent> <C-t> :FufTag<CR>
 nnoremap <silent> <C-l> :FufLine<CR>
 nnoremap <silent> <C-h> :FufHelp<CR>
 
-noremap <silent> <cr> :nohl<cr>
+nnoremap <silent> <C-]> :call SmartTag#SmartTag("goto")<CR>
+nnoremap <silent> <leader>tw :call SmartTag#SmartTag("split")<CR>
+nnoremap <silent> <leader>st :call SmartTag#ShowType()<CR>
+
+" These must be nmap
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
 
 "Set color scheme
 set t_Co=256
@@ -207,6 +233,9 @@ if has("gui_running")
   hi Incsearch  guifg=black     guibg=green  gui=NONE
   hi Search     guifg=black     guibg=yellow      gui=NONE
   hi Folded   guifg=#777777   guibg=NONE   gui=NONE
+  hi VertSplit guibg=#444444  guifg=#444444
+  hi StatusLine guibg=#444444
+  hi StatusLineNC guibg=#444444
 else
   colorscheme jellybeans
 endif
@@ -225,7 +254,7 @@ if has('autocmd')
     au! BufRead,BufNewFile *.mac      set filetype=Maxima
     au! BufRead,BufNewFile *.dem      set filetype=Maxima
     au! BufRead,BufNewFile *.php      set filetype=php.html
-    au! BufRead,BufNewFile *.html     map <silent> <F5> :silent ! /Applications/Safari.app/Contents/MacOS/Safari % &<CR>
+    au! BufRead,BufNewFile *.html     nnoremap <silent> <F5> :silent ! /Applications/Safari.app/Contents/MacOS/Safari % &<CR>
 
     au BufNewFile,BufRead *.py setl tabstop=4
     au BufNewFile,BufRead *.py setl softtabstop=4
@@ -239,7 +268,7 @@ if has('autocmd')
     au BufNewFile,BufRead *.md setl smarttab
     au BufNewFile,BufRead *.md setl expandtab
 
-    au BufRead,BufNewFile *.tex     map <silent> <F5> :silent VimProcBang pdflatex % <CR>
+    au BufRead,BufNewFile *.tex     nnoremap <silent> <F5> :silent VimProcBang pdflatex % <CR>
 
     au BufRead,BufNewFile *.cpp     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
     au BufRead,BufNewFile *.c     nnoremap <buffer> <F1> :silent exec "!open http://www.cplusplus.com/".expand("<cword>")<CR>
@@ -254,10 +283,6 @@ endif
 """""""""""""""""""""""""""""""
 " Plugin configuration
 """""""""""""""""""""""""""""""
-
-nmap <silent> <C-]> :call SmartTag#SmartTag("goto")<CR>
-nmap <silent> <leader>tw :call SmartTag#SmartTag("split")<CR>
-nmap <silent> <leader>st :call SmartTag#ShowType()<CR>
 
 " Lisp mode
 let g:lisp_rainbow = 1
@@ -295,11 +320,6 @@ augroup QFixToggle
   autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
 augroup END
 
-nnoremap <silent> <leader>g :execute 'vimgrep /'.@/.'/g **/*.c **/*.h **/*.cpp'<CR>:copen<CR>
-nnoremap <silent> Q :QFix<CR>
-nnoremap ]c :cnext<CR>
-nnoremap [c :cprevious<CR>
-
 " Common code for encodings
 function! SetFileEncodings(encodings)
   let b:myfileencodingsbak=&fileencodings
@@ -320,52 +340,18 @@ if !exists(":DiffOrig")
         \ | wincmd p | diffthis
 endif
 
-" Space space will toggle folds
-nnoremap <silent> <leader><space> za
-
 let g:SuperTabDefaultCompletionType = "context"
-
-set completeopt=menuone
-
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+liaS --extra=+q *<CR>
-
-set langmenu=en_US.UTF-8
 
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-
-" Anzu plugin
-" mapping
-
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-
-noremap <silent> <F12> :e $MYVIMRC<CR>
-
-nnoremap <C-S-]> <Esc>:exe "ptjump! " . expand("<cword>")<Esc>
-nnoremap <silent> <C-j> :ptnext<CR>
-nnoremap <silent> <C-k> :ptprev<CR>
-
 let g:airline_theme = 'bubblegum'
-if has("gui_running")
-  hi VertSplit guibg=#444444  guifg=#444444
-  hi StatusLine guibg=#444444
-  hi StatusLineNC guibg=#444444
-endif
-
 let g:airline_inactive_collapse = 0
 let g:airline#extensions#anzu#enabled = 0
 
 " indentation of C++
-
 set cino+=N-s "dont indent inside namespace {}
 set cino+=t0 " dont indent return type of func if on separate line
-
-nnoremap <silent> j gj
-nnoremap <silent> k gk
 
 " Green highlighting jumps or function returns in C and C++
 highlight Jumps guifg=#80e050
@@ -374,4 +360,3 @@ augroup additional_c_syntax
   autocmd Syntax c syntax keyword Jumps return goto continue
   autocmd Syntax cpp syntax keyword Jumps return goto continue
 augroup end
-
