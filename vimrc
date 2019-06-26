@@ -180,7 +180,7 @@ nnoremap <silent> <leader>l :set list!<CR>
 nnoremap <silent> <leader>s :set spell!<CR>
 nnoremap <silent> <leader>cd :cd %:h<CR>
 nnoremap <silent> <F2> :FSHere<CR>
-nnoremap <silent> <F3> <Plug>MarkSet
+nmap <silent> <F3> <Plug>MarkSet
 " F7 delete trailing whitespace
 nnoremap <F7> :%s/\s\+$//c<CR>
 nnoremap <silent> <F8> :GundoToggle<CR>
@@ -218,7 +218,7 @@ nnoremap <silent> <C-]> :call SmartTag#SmartTag("goto")<CR>
 nnoremap <silent> <leader>tw :call SmartTag#SmartTag("split")<CR>
 nnoremap <silent> <leader>st :call SmartTag#ShowType()<CR>
 
-" These must be nmap
+" <Plug> mappings must be nmap not nnoremap
 nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
