@@ -38,6 +38,7 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
+Bundle 'tpope/vim-fugitive'
 Bundle 'godlygeek/tabular'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'vim-airline/vim-airline'
