@@ -62,6 +62,7 @@ Bundle 'OmniCppComplete'
 Bundle 'EasyGrep'
 Bundle 'FSwitch'
 Bundle 'Autocomplpop'
+Bundle 'jreybert/vimagit'
 
 " put newbundles here ^
 
