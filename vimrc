@@ -362,3 +362,11 @@ augroup additional_c_syntax
   autocmd Syntax c syntax keyword Jumps return goto continue
   autocmd Syntax cpp syntax keyword Jumps return goto continue
 augroup end
+
+let g:term_buffer = 0
+augroup term_buffer_number
+    au!
+    au TerminalOpen * if &buftype == 'terminal' | let g:term_buffer=bufnr() | endif
+augroup end
+noremap <S-Return> ma:call search("^(", "bc")<CR>v%y \| :call term_sendkeys(g:term_buffer, @" . "\n")<CR>`a
+
