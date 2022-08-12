@@ -114,6 +114,7 @@ set bufhidden=hide
 set noequalalways " don't resize split windows when closing a window
 set langmenu=en_US.UTF-8
 set completeopt=menuone
+set nofixendofline " don't add a newline at the end of the file
 
 set shortmess=atT
 set shellslash " use forward slash on win32 when expanding filenames
