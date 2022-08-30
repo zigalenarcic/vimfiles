@@ -62,7 +62,8 @@ Bundle 'OmniCppComplete'
 Bundle 'EasyGrep'
 Bundle 'FSwitch'
 Bundle 'Autocomplpop'
-Bundle 'jreybert/vimagit'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'DoxygenToolkit.vim'
 
 " put newbundles here ^
 
