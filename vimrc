@@ -64,6 +64,11 @@ Bundle 'FSwitch'
 Bundle 'Autocomplpop'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'DoxygenToolkit.vim'
+Bundle 'chrisbra/csv.vim'
+"Bundle 'mechatroner/rainbow_csv'
+if has('win32') || has('win64')
+  Bundle 'zhmars/gvimtweak'
+endif
 
 " put newbundles here ^
 
@@ -185,9 +190,27 @@ nnoremap <silent> <leader>s :set spell!<CR>
 nnoremap <silent> <leader>cd :cd %:h<CR>
 nnoremap <silent> <F2> :FSHere<CR>
 nmap <silent> <F3> <Plug>MarkSet
+nnoremap <silent> <F4> :TlistToggle<CR>
+nnoremap <F9> :cd %:h:h<CR>
 " F7 delete trailing whitespace
 nnoremap <F7> :%s/\s\+$//c<CR>
 nnoremap <silent> <F8> :GundoToggle<CR>
+if has('win32') || has('win64')
+let is_alpha = 0
+function! ToggleAlpha()
+  if g:is_alpha == 0
+    execute "GvimTweakSetAlpha -70"
+    let g:is_alpha = 1
+  else
+    execute "GvimTweakSetAlpha 70"
+    let g:is_alpha = 0
+  endif
+endfunction
+
+  let g:gvimtweak#enable_alpha_at_startup=0
+  nnoremap <silent> <S-F11> :call ToggleAlpha()<CR>
+  nnoremap <silent> <F11> :GvimTweakToggleFullScreen<CR>
+endif
 nnoremap <C-F12> :!ctags -R --c++-kinds=+p --fields=+liaS --extra=+q *<CR>
 nnoremap <silent> <F12> :e $MYVIMRC<CR>
 
@@ -199,7 +222,7 @@ nnoremap [c :cprevious<CR>
 " Space will toggle folds
 "nnoremap <silent> <space> za
 
-nnoremap <C-S-]> <Esc>:exe "ptjump! " . expand("<cword>")<Esc>
+nnoremap <C-}> :exe "ptjump! " . expand("<cword>")<CR>
 nnoremap <silent> <C-j> :ptnext<CR>
 nnoremap <silent> <C-k> :ptprev<CR>
 
